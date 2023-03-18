@@ -23,7 +23,7 @@ export class VitaliiSynytskyiConfigLoaderService implements IConfigLoaderService
             projectName: 'Circle',
             personalProjectLink: 'https://witty-plant-0f1aca810.2.azurestaticapps.net',
             header: getDefaultCircleFrame(0),
-            frames: frames()
+            frames: [...Array(32).keys()].map(x => getDefaultCircleFrame(x))
         }
     }
 }
@@ -33,17 +33,30 @@ export const getDefaultCircleFrame = (frameNumber: number): IFrame => {
         pixels: []
     };
 
+    for (let x = 0; x < Constants.GridRows; x++) {
+        for (let y = 0; y < Constants.GridColumns; y++) {
 
+            if (Constants.GridColumns - x > frameNumber) {
+                if (x === y || x + y === Constants.GridColumns - 1) {
+                    result.pixels.push({
+                        color: Colour.White,
+                        x: x,
+                        y: y
+                    });
+                }
+            }
+
+            if (frameNumber > Constants.GridColumns && Constants.GridColumns - x < frameNumber - Constants.GridColumns) {
+                if (x === y || x + y === Constants.GridColumns - 1) {
+                    result.pixels.push({
+                        color: Colour.White,
+                        x: x,
+                        y: y
+                    });
+                }
+            }
+        }
+    }
 
     return result;
-}
-
-
-
-
-function frames(): IFrame[] {
-    const frames: IFrame[] = [];
-
-
-    return frames;
 }
