@@ -22,41 +22,87 @@ export class VitaliiSynytskyiConfigLoaderService implements IConfigLoaderService
             email: this.getStudentEmail(),
             projectName: 'Circle',
             personalProjectLink: 'https://witty-plant-0f1aca810.2.azurestaticapps.net',
-            header: getDefaultCircleFrame(0),
-            frames: [...Array(32).keys()].map(x => getDefaultCircleFrame(x))
+            header: Constants.DefaultConfig.header,
+            frames: generateFrames()
         }
     }
 }
-export const getDefaultCircleFrame = (frameNumber: number): IFrame => {
-    let result: IFrame = {
-        frameNumber: frameNumber,
-        pixels: []
-    };
+function generateFrames(): IFrame[] {
+    const frames: IFrame[] = [];
 
-    for (let x = 0; x < Constants.GridRows; x++) {
-        for (let y = 0; y < Constants.GridColumns; y++) {
+    const firstFrame: IPixelState[] = [
+        { x: 9, y: 1, color: Colour.White }, { x: 9, y: 2, color: Colour.White }, { x: 9, y: 3, color: Colour.White }, { x: 9, y: 4, color: Colour.White }, { x: 9, y: 5, color: Colour.White }, { x: 9, y: 6, color: Colour.White }, { x: 9, y: 7, color: Colour.White }, { x: 9, y: 8, color: Colour.White },
+        { x: 9, y: 9, color: Colour.White }, { x: 9, y: 10, color: Colour.White }, { x: 9, y: 11, color: Colour.White }, { x: 9, y: 12, color: Colour.White }, { x: 9, y: 13, color: Colour.White }, { x: 9, y: 14, color: Colour.White }, { x: 9, y: 15, color: Colour.White }, 
+        { x: 10, y: 0, color: Colour.White }, { x: 10, y: 15, color: Colour.White }, 
+        { x: 11, y: 1, color: Colour.White }, { x: 11, y: 2, color: Colour.White }, { x: 11, y: 3, color: Colour.White }, { x: 11, y: 4, color: Colour.White }, { x: 11, y: 5, color: Colour.White }, { x: 11, y: 6, color: Colour.White }, { x: 11, y: 7, color: Colour.White }, { x: 11, y: 8, color: Colour.White },
+        { x: 11, y: 9, color: Colour.White }, { x: 11, y: 10, color: Colour.White }, { x: 11, y: 11, color: Colour.White }, { x: 11, y: 12, color: Colour.White }, { x: 11, y: 13, color: Colour.White }, { x: 11, y: 14, color: Colour.White }, { x: 11, y: 15, color: Colour.White },
+        { x: 12, y: 3, color: Colour.White }, { x: 12, y: 5, color: Colour.White }, { x: 12, y: 10, color: Colour.White }, { x: 12, y: 12, color: Colour.White }, 
+        { x: 13, y: 3, color: Colour.White }, { x: 13, y: 5, color: Colour.White }, { x: 13, y: 10, color: Colour.White }, { x: 13, y: 12, color: Colour.White }, 
+        { x: 14, y: 3, color: Colour.White }, { x: 14, y: 5, color: Colour.White }, { x: 14, y: 10, color: Colour.White }, { x: 14, y: 12, color: Colour.White }, 
+        { x: 15, y: 4, color: Colour.White }, { x: 15, y: 5, color: Colour.White }, { x: 15, y: 6, color: Colour.White }, { x: 15, y: 7, color: Colour.White }, { x: 15, y: 8, color: Colour.White }, { x: 15, y: 9, color: Colour.White }, { x: 15, y: 10, color: Colour.White }, { x: 15, y: 11, color: Colour.White }, 
+    ];
 
-            if (Constants.GridColumns - x > frameNumber) {
-                if (x === y || x + y === Constants.GridColumns - 1) {
-                    result.pixels.push({
-                        color: Colour.White,
-                        x: x,
-                        y: y
-                    });
-                }
-            }
+    const secondFrame: IPixelState[] = [
+        { x: 4, y: 6, color: Colour.White }, { x: 4, y: 7, color: Colour.White }, { x: 4, y: 8, color: Colour.White }, { x: 4, y: 9, color: Colour.White }, 
+        { x: 5, y: 5, color: Colour.White }, { x: 5, y: 10, color: Colour.White }, 
+        { x: 6, y: 4, color: Colour.White }, { x: 6, y: 8, color: Colour.White }, { x: 6, y: 11, color: Colour.White }, 
+        { x: 7, y: 4, color: Colour.White }, { x: 7, y: 6, color: Colour.White }, { x: 7, y: 11, color: Colour.White }, 
+        { x: 8, y: 4, color: Colour.White }, { x: 8, y: 9, color: Colour.White }, { x: 8, y: 11, color: Colour.White }, 
+        { x: 9, y: 1, color: Colour.White }, { x: 9, y: 2, color: Colour.White }, { x: 9, y: 3, color: Colour.White }, { x: 9, y: 4, color: Colour.White }, { x: 9, y: 5, color: Colour.White }, { x: 9, y: 6, color: Colour.White }, { x: 9, y: 7, color: Colour.White }, { x: 9, y: 8, color: Colour.White },
+        { x: 9, y: 9, color: Colour.White }, { x: 9, y: 10, color: Colour.White }, { x: 9, y: 11, color: Colour.White }, { x: 9, y: 12, color: Colour.White }, { x: 9, y: 13, color: Colour.White }, { x: 9, y: 14, color: Colour.White }, { x: 9, y: 15, color: Colour.White },
+        { x: 10, y: 0, color: Colour.White }, { x: 10, y: 15, color: Colour.White },
+        { x: 11, y: 1, color: Colour.White }, { x: 11, y: 2, color: Colour.White }, { x: 11, y: 3, color: Colour.White }, { x: 11, y: 4, color: Colour.White }, { x: 11, y: 5, color: Colour.White }, { x: 11, y: 6, color: Colour.White }, { x: 11, y: 7, color: Colour.White }, { x: 11, y: 8, color: Colour.White },
+        { x: 11, y: 9, color: Colour.White }, { x: 11, y: 10, color: Colour.White }, { x: 11, y: 11, color: Colour.White }, { x: 11, y: 12, color: Colour.White }, { x: 11, y: 13, color: Colour.White }, { x: 11, y: 14, color: Colour.White }, { x: 11, y: 15, color: Colour.White },
+        { x: 12, y: 3, color: Colour.White }, { x: 12, y: 5, color: Colour.White }, { x: 12, y: 10, color: Colour.White }, { x: 12, y: 12, color: Colour.White },
+        { x: 13, y: 3, color: Colour.White }, { x: 13, y: 5, color: Colour.White }, { x: 13, y: 10, color: Colour.White }, { x: 13, y: 12, color: Colour.White },
+        { x: 14, y: 3, color: Colour.White }, { x: 14, y: 5, color: Colour.White }, { x: 14, y: 10, color: Colour.White }, { x: 14, y: 12, color: Colour.White },
+        { x: 15, y: 4, color: Colour.White }, { x: 15, y: 5, color: Colour.White }, { x: 15, y: 6, color: Colour.White }, { x: 15, y: 7, color: Colour.White }, { x: 15, y: 8, color: Colour.White }, { x: 15, y: 9, color: Colour.White }, { x: 15, y: 10, color: Colour.White }, { x: 15, y: 11, color: Colour.White }, 
+    ];
 
-            if (frameNumber > Constants.GridColumns && Constants.GridColumns - x < frameNumber - Constants.GridColumns) {
-                if (x === y || x + y === Constants.GridColumns - 1) {
-                    result.pixels.push({
-                        color: Colour.White,
-                        x: x,
-                        y: y
-                    });
-                }
-            }
+    const thirdFrame: IPixelState[] = [
+        { x: 0, y: 6, color: Colour.White }, { x: 0, y: 7, color: Colour.White }, { x: 0, y: 8, color: Colour.White }, { x: 0, y: 9, color: Colour.White },
+        { x: 1, y: 5, color: Colour.White }, { x: 1, y: 10, color: Colour.White }, { x: 1, y: 12, color: Colour.White },
+        { x: 2, y: 4, color: Colour.White }, { x: 2, y: 8, color: Colour.White }, { x: 2, y: 11, color: Colour.White }, { x: 2, y: 13, color: Colour.White },
+        { x: 3, y: 4, color: Colour.White }, { x: 3, y: 6, color: Colour.White }, { x: 3, y: 11, color: Colour.White }, { x: 3, y: 12, color: Colour.White },
+        { x: 4, y: 4, color: Colour.White }, { x: 4, y: 9, color: Colour.White }, { x: 4, y: 11, color: Colour.White },
+        { x: 5, y: 3, color: Colour.White }, { x: 5, y: 4, color: Colour.White }, { x: 5, y: 8, color: Colour.White }, { x: 5, y: 11, color: Colour.White }, { x: 5, y: 12, color: Colour.White }, { x: 5, y: 13, color: Colour.White },
+        { x: 6, y: 2, color: Colour.White }, { x: 6, y: 4, color: Colour.White }, { x: 6, y: 6, color: Colour.White }, { x: 6, y: 11, color: Colour.White }, { x: 6, y: 14, color: Colour.White },
+        { x: 7, y: 3, color: Colour.White }, { x: 7, y: 4, color: Colour.White }, { x: 7, y: 9, color: Colour.White }, { x: 7, y: 11, color: Colour.White }, { x: 7, y: 12, color: Colour.White }, { x: 7, y: 13, color: Colour.White },
+        { x: 8, y: 4, color: Colour.White }, { x: 8, y: 11, color: Colour.White },
+        { x: 9, y: 1, color: Colour.White }, { x: 9, y: 2, color: Colour.White }, { x: 9, y: 3, color: Colour.White }, { x: 9, y: 4, color: Colour.White }, { x: 9, y: 5, color: Colour.White }, { x: 9, y: 6, color: Colour.White }, { x: 9, y: 7, color: Colour.White }, { x: 9, y: 8, color: Colour.White },
+        { x: 9, y: 9, color: Colour.White }, { x: 9, y: 10, color: Colour.White }, { x: 9, y: 11, color: Colour.White }, { x: 9, y: 12, color: Colour.White }, { x: 9, y: 13, color: Colour.White }, { x: 9, y: 14, color: Colour.White }, { x: 9, y: 15, color: Colour.White },
+        { x: 10, y: 0, color: Colour.White }, { x: 10, y: 15, color: Colour.White },
+        { x: 11, y: 1, color: Colour.White }, { x: 11, y: 2, color: Colour.White }, { x: 11, y: 3, color: Colour.White }, { x: 11, y: 4, color: Colour.White }, { x: 11, y: 5, color: Colour.White }, { x: 11, y: 6, color: Colour.White }, { x: 11, y: 7, color: Colour.White }, { x: 11, y: 8, color: Colour.White },
+        { x: 11, y: 9, color: Colour.White }, { x: 11, y: 10, color: Colour.White }, { x: 11, y: 11, color: Colour.White }, { x: 11, y: 12, color: Colour.White }, { x: 11, y: 13, color: Colour.White }, { x: 11, y: 14, color: Colour.White }, { x: 11, y: 15, color: Colour.White },
+        { x: 12, y: 3, color: Colour.White }, { x: 12, y: 5, color: Colour.White }, { x: 12, y: 10, color: Colour.White }, { x: 12, y: 12, color: Colour.White },
+        { x: 13, y: 3, color: Colour.White }, { x: 13, y: 5, color: Colour.White }, { x: 13, y: 10, color: Colour.White }, { x: 13, y: 12, color: Colour.White },
+        { x: 14, y: 3, color: Colour.White }, { x: 14, y: 5, color: Colour.White }, { x: 14, y: 10, color: Colour.White }, { x: 14, y: 12, color: Colour.White },
+        { x: 15, y: 4, color: Colour.White }, { x: 15, y: 5, color: Colour.White }, { x: 15, y: 6, color: Colour.White }, { x: 15, y: 7, color: Colour.White }, { x: 15, y: 8, color: Colour.White }, { x: 15, y: 9, color: Colour.White }, { x: 15, y: 10, color: Colour.White }, { x: 15, y: 11, color: Colour.White }, 
+    ];
+
+
+    for (let frameNumber = 0; frameNumber < Constants.MaxTotalFrames; frameNumber++) {
+        const pixels: IPixelState[] = [];
+
+        const show1 = frameNumber % 30 < 10;
+        const show2 = frameNumber % 30 >= 10 && frameNumber % 30 < 20;
+        const show3 = frameNumber % 30 >= 20;
+
+        if (show1) {
+            pixels.push(...firstFrame.map(pixel => ({ ...pixel, x: pixel.x, color: Colour.White })));
         }
+        if (show2) {
+            pixels.push(...secondFrame.map(pixel => ({ ...pixel, x: pixel.x, color: Colour.White })));
+        }
+        if (show3) {
+            pixels.push(...thirdFrame.map(pixel => ({ ...pixel, x: pixel.x, color: Colour.White })));
+        }
+
+        frames.push({
+            frameNumber: frameNumber,
+            pixels: pixels,
+        });
     }
 
-    return result;
+    return frames;
 }
