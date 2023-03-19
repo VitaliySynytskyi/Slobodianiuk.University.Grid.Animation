@@ -20,7 +20,7 @@ export class VitaliiSynytskyiConfigLoaderService implements IConfigLoaderService
             name: 'Vitalii',
             surname: 'Synytskyi',
             email: this.getStudentEmail(),
-            projectName: 'Circle',
+            projectName: 'Cactus',
             personalProjectLink: 'https://witty-plant-0f1aca810.2.azurestaticapps.net',
             header: Constants.DefaultConfig.header,
             frames: generateFrames()
