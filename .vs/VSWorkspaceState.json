@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\services"
   ],
-  "SelectedNode": "\\package-lock.json",
+  "SelectedNode": "\\src\\services\\config-loader.ts",
   "PreviewInSolutionExplorer": false
 }
